@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe RabbitMQSpec::DSL::Builder::Exchange do
@@ -14,15 +16,13 @@ describe RabbitMQSpec::DSL::Builder::Exchange do
       expect(exchange).to be_an_instance_of(RabbitMQSpec::Entity::Exchange)
       expect(exchange.name).to eq('exchange-name')
       expect(exchange.description).to eq('my-exchange-desc')
-      expect(exchange.options).to eq({durable: true, attr_custom: 3})
-
+      expect(exchange.options).to eq(durable: true, attr_custom: 3)
     end
 
     it 'allows me to add queues to the exchange' do
       mock_queue = double('queue')
       allow(RabbitMQSpec::DSL::Builder::Queue).to receive(:build).and_return(mock_queue)
       exchange = described_class.build(name: 'exchange-name') do
-
         queue 'q1' do
           command1 '..'
           command2 '..'

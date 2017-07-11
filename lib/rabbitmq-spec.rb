@@ -1,6 +1,8 @@
-require "rabbitmq-spec/version"
+# frozen_string_literal: true
+
+require 'rabbitmq-spec/version'
 
 module RabbitMQSpec
-  autoload :DSL,   'rabbitmq-spec/dsl'
-  autoload :Entity,   'rabbitmq-spec/entity'
+  autoload :DSL, 'rabbitmq-spec/dsl'
+  autoload :Entity, 'rabbitmq-spec/entity'
 end

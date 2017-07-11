@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe RabbitMQSpec::DSL::Builder::Base do
@@ -48,7 +50,7 @@ describe RabbitMQSpec::DSL::Builder::Base do
     end
 
     it 'raises an error if I try to set a non declared attribute' do
-      expect {
+      expect do
         options = Class.new(RabbitMQSpec::DSL::Builder::Base) do
           define_dsl_attribute :attr1
           define_dsl_attribute :attr2
@@ -63,7 +65,7 @@ describe RabbitMQSpec::DSL::Builder::Base do
         end.build(default_attribute: 'myvalue') do
           attr5 'at1'
         end
-      }.to raise_error("Configuration 'attr5' is not allowed for test_builder")
+      end.to raise_error("Configuration 'attr5' is not allowed for test_builder")
     end
   end
 end

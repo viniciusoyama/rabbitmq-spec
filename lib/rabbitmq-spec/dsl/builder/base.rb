@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RabbitMQSpec::DSL::Builder::Base
   # class methods
   def self.define_dsl_attribute(attribute_name)
@@ -31,12 +33,12 @@ class RabbitMQSpec::DSL::Builder::Base
   def method_missing(method_name, *args, &block)
     if self.class.has_dsl_attribute?(method_name.to_sym)
       @builded_attributes[method_name.to_sym] = if block_given?
-        build_hash_from_block(&block)
-      else
-        args[0]
+                                                  build_hash_from_block(&block)
+                                                else
+                                                  args[0]
       end
     else
-      raise "Configuration '#{method_name}' is not allowed for #{self.to_s}"
+      raise "Configuration '#{method_name}' is not allowed for #{self}"
     end
   end
 
@@ -51,9 +53,7 @@ class RabbitMQSpec::DSL::Builder::Base
 
   private
 
-
   class HashBuilder
-
     def initialize
       @hash = {}
     end
@@ -64,11 +64,11 @@ class RabbitMQSpec::DSL::Builder::Base
 
     def method_missing(method_name, *args, &block)
       @hash[method_name.to_sym] = if block_given?
-        builder = HashBuilder.new
-        builder.instance_eval(&block)
-        builder.build
-      else
-        args[0]
+                                    builder = HashBuilder.new
+                                    builder.instance_eval(&block)
+                                    builder.build
+                                  else
+                                    args[0]
       end
     end
   end

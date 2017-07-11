@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe RabbitMQSpec::DSL::Builder::Queue do
@@ -14,8 +16,7 @@ describe RabbitMQSpec::DSL::Builder::Queue do
       expect(queue.name).to eq('queue-name')
       expect(queue.description).to eq('my-desc')
       expect(queue.routing_key).to eq('routing.key')
-      expect(queue.options).to eq({durable: true})
-
+      expect(queue.options).to eq(durable: true)
     end
   end
 end
