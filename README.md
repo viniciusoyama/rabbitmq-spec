@@ -24,6 +24,29 @@ Or install it yourself as:
 
 1) Make a new folder and put your RabbitMQ Specification there. You can use the following syntax:
 
+`````ruby
+  # exchange options are fowarded to Bunny Channel#exchanged method
+  # http://reference.rubybunny.info/Bunny/Channel.html#exchange-instance_method
+  options http://reference.rubybunny.info/Bunny/Channel.html#exchange-instance_method
+
+  exchange name: 'exchange-name', # required
+    description: 'Custom exchange description', # optional
+    options: { durable: true } # optional
+      do
+
+
+    # queue options are fowarded to Bunny Channel#queue method
+    # http://reference.rubybunny.info/Bunny/Channel.html#queue-instance_methodChannel.html#exchange-instance_method
+
+    queue name: 'my-queue', # required
+      description: "Custom queue description", # optional
+      routing_key: "Custom queue description", # optional for the binding configuration
+      options: { # optional. Defaults to {}
+        durable: true
+      }
+  end
+`````
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
