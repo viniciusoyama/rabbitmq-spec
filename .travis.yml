@@ -1,3 +1,8 @@
+env:
+  global:
+    - CC_TEST_REPORTER_ID=4d256099898a6b6b235c5a1cc42a1d27b0276b31b5dcca3065e53440844541c4
+    - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi)
+
 language: ruby
 
 cache:
@@ -6,14 +11,14 @@ cache:
 rvm:
  - "2.4.1"
 
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
 
 script:
   - bundle exec rubocop
   - bundle exec rspec
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT; fi
 
 notifications:
   email: false
-
-addons:
-  code_climate:
-    repo_token: b7df1f5e3484da49593a3d3a5af64137041240eebeae74fbd4a852910bee0f75
