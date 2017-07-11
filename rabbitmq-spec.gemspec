@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'rabbitmq/spec/version'
+require 'rabbitmq-spec/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "rabbitmq-spec"
-  spec.version       = Rabbitmq::Spec::VERSION
+  spec.version       = RabbitMQSpec::VERSION
   spec.authors       = ["Vinicius Oyama"]
   spec.email         = ["vinicius.oyama@codus.com.br"]
 
@@ -29,4 +29,5 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.11"
   spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "rspec", "~> 3.6"
 end
