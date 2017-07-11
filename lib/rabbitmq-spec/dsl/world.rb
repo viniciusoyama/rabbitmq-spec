@@ -7,7 +7,6 @@ class RabbitMQSpec::DSL::World
 
   def exchange(name, &block)
     new_exchange = RabbitMQSpec::DSL::Builder::Exchange.build(name: name, &block)
-    new_exchange.instance_eval(&block) if block_given?
     @exchanges << new_exchange
   end
 end

@@ -29,7 +29,7 @@ class RabbitMQSpec::DSL::Builder::Base
   end
 
   def method_missing(method_name, *args, &block)
-    if self.class.has_dsl_attribute?(method_name)
+    if self.class.has_dsl_attribute?(method_name.to_sym)
       @builded_attributes[method_name.to_sym] = if block_given?
         build_hash_from_block(&block)
       else
