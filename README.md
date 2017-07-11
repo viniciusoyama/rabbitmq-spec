@@ -1,4 +1,6 @@
-# rabbitmq-spec
+rabbitmq-spec
+==========
+[![Code Climate](https://codeclimate.com/github/viniciusoyama/rabbitmq-spec/badges/gpa.svg)](https://codeclimate.com/github/codeclimate/codeclimate)
 
 Gem for documenting and configuring RabbitMQ brokers
 
