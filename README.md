@@ -29,21 +29,18 @@ Or install it yourself as:
 
 `````ruby
 
-  exchange 'exchange1' do
-    description 'exchange1-description'
+  exchange 'exchange-name' do
+    description 'exchange-description' # optional
 
     # exchange options are fowarded to Bunny Channel#exchanged method
     # http://reference.rubybunny.info/Bunny/Channel.html#exchange-instance_method
-    options http://reference.rubybunny.info/Bunny/Channel.html#exchange-instance_method
     options do
       durable true
     end
 
-    queue 'queue1' do
-      description 'queue1 description'
-      routing_key 'my-custom-routing-key'
-
-
+    queue 'queue-name' do
+      description 'queue1 description' # optional
+      routing_key 'my-custom-routing-key' # optional
 
       # queue options are fowarded to Bunny Channel#queue method
       # http://reference.rubybunny.info/Bunny/Channel.html#queue-instance_methodChannel.html#exchange-instance_method
