@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class RabbitMQSpec::DSL::Builder::Queue < RabbitMQSpec::DSL::Builder::Base
   define_entity_class RabbitMQSpec::Entity::Queue
 

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class RabbitMQSpec::Entity::Queue
   attr_accessor :name
   attr_accessor :description

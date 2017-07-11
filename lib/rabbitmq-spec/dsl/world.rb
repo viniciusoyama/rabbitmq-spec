@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class RabbitMQSpec::DSL::World
   attr_reader :exchanges
 

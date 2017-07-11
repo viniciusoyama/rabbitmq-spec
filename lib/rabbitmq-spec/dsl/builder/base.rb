@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class RabbitMQSpec::DSL::Builder::Base
   # class methods
   def self.define_dsl_attribute(attribute_name)

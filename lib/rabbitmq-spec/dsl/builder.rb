@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class RabbitMQSpec::DSL::Builder
   autoload :Base, 'rabbitmq-spec/dsl/builder/base'
   autoload :Queue, 'rabbitmq-spec/dsl/builder/queue'
