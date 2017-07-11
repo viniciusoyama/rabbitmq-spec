@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RabbitMQSpec::DSL::Builder::Base do
   context 'using provided dsl' do
-    specify 'I can define values using scalar values' do
+    specify 'I can define scalar values' do
       options = Class.new(RabbitMQSpec::DSL::Builder::Base) do
         define_dsl_attribute :attr1
         define_dsl_attribute :attr2
