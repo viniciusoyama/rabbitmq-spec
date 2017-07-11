@@ -9,7 +9,7 @@ describe RabbitMQSpec::DSL::Builder::Base do
         define_dsl_attribute :attr3
 
         def build_entity
-          @builded_options
+          @builded_attributes
         end
       end.build(default_attribute: 'myvalue') do
         attr1 'at1'
@@ -27,7 +27,7 @@ describe RabbitMQSpec::DSL::Builder::Base do
         define_dsl_attribute :attr1
 
         def build_entity
-          @builded_options
+          @builded_attributes
         end
       end.build(default_attribute: 'myvalue') do
         attr1 do
@@ -54,7 +54,7 @@ describe RabbitMQSpec::DSL::Builder::Base do
           define_dsl_attribute :attr2
 
           def build_entity
-            @builded_options
+            @builded_attributes
           end
 
           def to_s
