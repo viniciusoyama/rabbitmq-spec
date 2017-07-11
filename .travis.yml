@@ -1,0 +1,19 @@
+language: ruby
+
+cache:
+  bundler: true
+
+rvm:
+ - "2.4.1"
+
+
+script:
+  - bundle exec rubocop
+  - bundle exec rspec
+
+notifications:
+  email: false
+
+addons:
+  code_climate:
+    repo_token: b7df1f5e3484da49593a3d3a5af64137041240eebeae74fbd4a852910bee0f75
