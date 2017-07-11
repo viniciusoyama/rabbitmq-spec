@@ -1,10 +1,8 @@
-# Rabbitmq::Spec
+# rabbitmq-spec
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rabbitmq/spec`. To experiment with that code, run `bin/console` for an interactive prompt.
+Gem for documenting and configuring RabbitMQ brokers
 
-TODO: Delete this and the text above, and describe your gem
-
-## Installation
+## Usage
 
 Add this line to your application's Gemfile:
 
@@ -22,7 +20,32 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Creating RabbitMQ Specifications
+
+1) Make a new folder and put your RabbitMQ Specification there. You can use the following syntax:
+
+`````ruby
+  # exchange options are fowarded to Bunny Channel#exchanged method
+  # http://reference.rubybunny.info/Bunny/Channel.html#exchange-instance_method
+  options http://reference.rubybunny.info/Bunny/Channel.html#exchange-instance_method
+
+  exchange name: 'exchange-name', # required
+    description: 'Custom exchange description', # optional
+    options: { durable: true } # optional
+      do
+
+
+    # queue options are fowarded to Bunny Channel#queue method
+    # http://reference.rubybunny.info/Bunny/Channel.html#queue-instance_methodChannel.html#exchange-instance_method
+
+    queue name: 'my-queue', # required
+      description: "Custom queue description", # optional
+      routing_key: "Custom queue description", # optional for the binding configuration
+      options: { # optional. Defaults to {}
+        durable: true
+      }
+  end
+`````
 
 ## Development
 
