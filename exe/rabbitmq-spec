@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'cri'
+require 'rabbitmq-spec'
 
 root_cmd = Cri::Command.define do
   name        'rabbitmq-spec'
@@ -24,15 +25,19 @@ cmd_setup = Cri::Command.define do
 
   required :u, :"broker-url", 'AMPQ Broker Url', argument: :required
 
-  run do |_opts, args, _cmd|
+  run do |opts, args, _cmd|
     if args.count.zero?
       puts 'Please pass a folder or a file name.'
       exit 0
+    elsif opts[:'broker-url'].nil?
+      puts 'Please provide the broker url.'
+      exit 0
     else
-      args.each do |folder_path|
-        puts File.expand_path(folder_path.to_s)
+      paths = args.map do |folder_path|
+        File.expand_path(folder_path.to_s)
       end
-      puts 'OK'
+      RabbitMQSpec::Setup.run(files_paths: paths, url: opts)
+      puts 'Setup Finished'
     end
     exit 0
   end

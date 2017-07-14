@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'bunny'
 
 describe RabbitMQSpec::Setup do
   subject { RabbitMQSpec::Setup }

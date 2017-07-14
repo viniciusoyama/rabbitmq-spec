@@ -1,3 +1,5 @@
+require 'bunny'
+
 class RabbitMQSpec::Setup
   autoload :Runner, 'rabbitmq-spec/setup/runner'
   autoload :WorldSetupper, 'rabbitmq-spec/setup/world_setupper'

@@ -1,8 +1,8 @@
 module RabbitMQSpec::Setup::WorldSetupper
   class << self
-    def call(world, _client)
+    def call(world, client)
       world.exchanges.each do |exchange|
-        setup_exchange(exchange)
+        setup_exchange(exchange, client)
       end
     end
 
