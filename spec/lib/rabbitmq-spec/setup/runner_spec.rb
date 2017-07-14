@@ -46,9 +46,11 @@ describe RabbitMQSpec::Setup::Runner do
   describe '#worlds' do
     it 'runs the WorldFetchers' do
       client = double('client')
-      runner = RabbitMQSpec::Setup::Runner.new(['path1', 'path2', 'path3..'], client)
+      runner = RabbitMQSpec::Setup::Runner.new(['path1', 'path2', 'path3'], client)
 
-      expect(RabbitMQSpec::Setup::WorldFetcher).to receive(:call).with(['path1', 'path2', 'path3..'])
+      expect(RabbitMQSpec::Setup::WorldFetcher).to receive(:call).with('path1').ordered
+      expect(RabbitMQSpec::Setup::WorldFetcher).to receive(:call).with('path2').ordered
+      expect(RabbitMQSpec::Setup::WorldFetcher).to receive(:call).with('path3').ordered
 
       runner.worlds
     end

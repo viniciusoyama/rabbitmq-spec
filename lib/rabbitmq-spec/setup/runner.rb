@@ -11,7 +11,7 @@ class RabbitMQSpec::Setup::Runner
   end
 
   def worlds
-    RabbitMQSpec::Setup::WorldFetcher.call(@paths_to_read)
+    @paths_to_read.each { |path| RabbitMQSpec::Setup::WorldFetcher.call(path) }
   end
 
   def setup_world(world)

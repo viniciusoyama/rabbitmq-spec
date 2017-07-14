@@ -6,5 +6,13 @@ Bundler.setup
 
 require 'rabbitmq-spec' # and any other gems you need
 
+def load_fixture(fixture_name)
+  File.read(fixture_path(fixture_name))
+end
+
+def fixture_path(fixture_name)
+  File.expand_path("../fixtures/#{fixture_name}", __FILE__)
+end
+
 RSpec.configure do |config|
 end

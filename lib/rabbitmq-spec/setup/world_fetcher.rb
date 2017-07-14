@@ -1,5 +1,8 @@
 module RabbitMQSpec::Setup::WorldFetcher
   class << self
-    def call(mqspecs_file_paths); end
+    def call(mqspec_file_path)
+      dsl_string = File.read(mqspec_file_path)
+      RabbitMQSpec::DSL.evaluate(dsl_string)
+    end
   end
 end
