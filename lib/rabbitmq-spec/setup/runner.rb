@@ -11,10 +11,10 @@ class RabbitMQSpec::Setup::Runner
   end
 
   def worlds
-    RabbitMQSpec::Setup::WorldFetcher.(@paths_to_read)
+    RabbitMQSpec::Setup::WorldFetcher.call(@paths_to_read)
   end
 
   def setup_world(world)
-    RabbitMQSpec::Setup::WorldSetupper.(world, @client)
+    RabbitMQSpec::Setup::WorldSetupper.call(world, @client)
   end
 end

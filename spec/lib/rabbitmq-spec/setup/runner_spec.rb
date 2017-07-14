@@ -43,10 +43,8 @@ describe RabbitMQSpec::Setup::Runner do
     end
   end
 
-
   describe '#worlds' do
     it 'runs the WorldFetchers' do
-      world = double('world')
       client = double('client')
       runner = RabbitMQSpec::Setup::Runner.new(['path1', 'path2', 'path3..'], client)
 

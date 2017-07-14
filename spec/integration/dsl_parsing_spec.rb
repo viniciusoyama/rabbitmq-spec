@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'DSL Parsing should store all configurations' do
   specify do
-    world = RabbitMQSpec::DSL.evaluate %Q{
+    world = RabbitMQSpec::DSL.evaluate %(
       exchange 'exchange1' do
         description 'exchange1-description'
 
@@ -43,7 +43,7 @@ describe 'DSL Parsing should store all configurations' do
           end
         end
       end
-    }
+    )
 
     expect(world.exchanges.count).to be(2)
 
