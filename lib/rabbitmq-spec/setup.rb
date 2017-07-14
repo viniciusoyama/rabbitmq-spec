@@ -6,7 +6,7 @@ class RabbitMQSpec::Setup
   autoload :WorldFetcher, 'rabbitmq-spec/setup/world_fetcher'
 
   class << self
-    def run(files_paths: files_paths, url: url)
+    def run(files_paths:, url:)
       with_client(url) do |client|
         RabbitMQSpec::Setup::Runner.new(files_paths, client).run
       end
