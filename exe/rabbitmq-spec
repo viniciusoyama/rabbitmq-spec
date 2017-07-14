@@ -35,9 +35,9 @@ cmd_setup = Cri::Command.define do
         if File.file?(target_path)
           target_path
         else
-          Dir.glob("#{target_path}/**/*").reject { |file_path| File.directory? file_path }
+          Dir.glob("#{target_path}/**/*_mqspec.rb").reject { |file_path| File.directory? file_path }
         end
-      end
+      end.flatten
 
       RabbitMQSpec::Setup.run(files_paths: paths, url: opts[:'broker-url'])
       puts "Setup finished on #{opts[:'broker-url']}'"

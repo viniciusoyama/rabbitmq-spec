@@ -41,11 +41,13 @@ describe RabbitMQSpec::Setup::WorldSetupper do
 
       expect(client).to receive(:exchange).with('exc1', { exchange1_options: 'ex1opt' }).ordered
 
-      expect(client).to receive(:queue).with('q1name', { queue1_options: 'q1opt' }).ordered
-      expect(@queue1).to receive(:bind).with('exc1', routing_key: "q1.binding").ordered
+      created_queue = double('queue1')
+      expect(client).to receive(:queue).with('q1name', { queue1_options: 'q1opt' }).ordered.and_return(created_queue)
+      expect(created_queue).to receive(:bind).with('exc1', routing_key: "q1.binding").ordered
 
-      expect(client).to receive(:queue).with('q2name', { queue2_options: 'q2opt' }).ordered
-      expect(@queue2).to receive(:bind).with('exc1').ordered
+      created_queue = double('queue2')
+      expect(client).to receive(:queue).with('q2name', { queue2_options: 'q2opt' }).ordered.and_return(created_queue)
+      expect(created_queue).to receive(:bind).with('exc1').ordered
 
       subject.setup_exchange(@exchange, client)
     end
