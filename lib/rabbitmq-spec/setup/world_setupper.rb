@@ -10,6 +10,11 @@ module RabbitMQSpec::Setup::WorldSetupper
       client.exchange(exchange.name, exchange.options)
       exchange.queues.each do |queue|
         client.queue(queue.name, queue.options)
+        if queue.routing_key.nil?
+          queue.bind(exchange.name)
+        else
+          queue.bind(exchange.name, routing_key: queue.routing_key)
+        end
       end
     end
   end
