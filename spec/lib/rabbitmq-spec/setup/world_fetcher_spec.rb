@@ -10,7 +10,7 @@ describe RabbitMQSpec::Setup::WorldFetcher do
 
       world = subject.(fixture_path('dsl_example.rb'))
 
-      expect(world[0]).to be(mock_world)
+      expect(world).to be(mock_world)
     end
   end
 end

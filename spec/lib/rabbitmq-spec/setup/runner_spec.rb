@@ -48,11 +48,11 @@ describe RabbitMQSpec::Setup::Runner do
       client = double('client')
       runner = RabbitMQSpec::Setup::Runner.new(['path1', 'path2', 'path3'], client)
 
-      expect(RabbitMQSpec::Setup::WorldFetcher).to receive(:call).with('path1').ordered.and_return(['w1', 'w2'])
-      expect(RabbitMQSpec::Setup::WorldFetcher).to receive(:call).with('path2').ordered.and_return(['w3'])
-      expect(RabbitMQSpec::Setup::WorldFetcher).to receive(:call).with('path3').ordered.and_return(['w4'])
+      expect(RabbitMQSpec::Setup::WorldFetcher).to receive(:call).with('path1').ordered.and_return('w1')
+      expect(RabbitMQSpec::Setup::WorldFetcher).to receive(:call).with('path2').ordered.and_return('w2')
+      expect(RabbitMQSpec::Setup::WorldFetcher).to receive(:call).with('path3').ordered.and_return('w3')
 
-      expect(runner.worlds).to eq(['w1', 'w2', 'w3', 'w4'])
+      expect(runner.worlds).to eq(['w1', 'w2', 'w3'])
     end
   end
 end
