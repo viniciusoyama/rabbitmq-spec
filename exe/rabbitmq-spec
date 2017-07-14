@@ -31,10 +31,15 @@ cmd_setup = Cri::Command.define do
       puts 'Please pass a folder or a file name.'
       exit 0
     else
-      paths = args.map do |folder_path|
-        File.expand_path(folder_path.to_s)
+      paths = args.map do |target_path|
+        if File.file?(target_path)
+          target_path
+        else
+          Dir.glob("#{target_path}/**/*").reject { |file_path| File.directory? file_path }
+        end
       end
-      RabbitMQSpec::Setup.run(files_paths: paths, url: opts[:'broker-url'])
+
+      # RabbitMQSpec::Setup.run(files_paths: paths, url: opts[:'broker-url'])
       puts "Setup finished on #{opts[:'broker-url']}'"
     end
     exit 0
