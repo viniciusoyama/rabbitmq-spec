@@ -54,7 +54,6 @@ describe RabbitMQSpec::DSL::Builder::Base do
           define_dsl_attribute :attr2
 
           def build_entity
-            @builded_attributes
           end
 
           def to_s
