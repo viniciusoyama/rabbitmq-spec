@@ -22,15 +22,9 @@ describe RabbitMQSpec::DSL::Builder::Exchange do
       allow(RabbitMQSpec::DSL::Builder::Queue).to receive(:build).and_return(mock_queue)
       exchange = described_class.build(name: 'exchange-name') do
         queue 'q1' do
-          command1 '..'
-          command2 '..'
-          command3 '..'
         end
 
         queue 'q2' do
-          command1 '..'
-          command2 '..'
-          command3 '..'
         end
       end
       expect(exchange.queues.count).to be(2)
