@@ -11,8 +11,8 @@ describe RabbitMQSpec::Setup::WorldSetupper do
       exchange2 = double('exchange2')
       world.instance_variable_set('@exchanges', [exchange1, exchange2])
 
-      expect(subject).to receive(:setup_exchange).with(exchange1).ordered
-      expect(subject).to receive(:setup_exchange).with(exchange2).ordered
+      expect(subject).to receive(:setup_exchange).with(exchange1, client).ordered
+      expect(subject).to receive(:setup_exchange).with(exchange2, client).ordered
 
       subject.(world, client)
     end
