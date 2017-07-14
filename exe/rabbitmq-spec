@@ -38,9 +38,14 @@ cmd_setup = Cri::Command.define do
           Dir.glob("#{target_path}/**/*_mqspec.rb").reject { |file_path| File.directory? file_path }
         end
       end.flatten
-
-      RabbitMQSpec::Setup.run(files_paths: paths, url: opts[:'broker-url'])
-      puts "Setup finished on #{opts[:'broker-url']}'"
+      if paths.count.zero?
+        puts "ERROR: No *_mqspec.rb files found."
+      else
+        puts "Parsing files:"
+        puts paths
+        RabbitMQSpec::Setup.run(files_paths: paths, url: opts[:'broker-url'])
+        puts "Setup finished on #{opts[:'broker-url']}'"
+      end
     end
     exit 0
   end
