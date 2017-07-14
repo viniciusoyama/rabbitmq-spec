@@ -23,21 +23,19 @@ cmd_setup = Cri::Command.define do
   usage       'rabbitmq-spec setup [options]'
   summary     'Configure RabbitMQ usging the passed specifications files'
 
-  required :u, :"broker-url", 'AMPQ Broker Url', argument: :required
+  required :u, :"broker-url", 'AMPQ Broker Url - Defaults to localhost:5672', argument: :required
 
   run do |opts, args, _cmd|
+    opts[:'broker-url'] ||= 'amqp://guest:guest@localhost:5672'
     if args.count.zero?
       puts 'Please pass a folder or a file name.'
-      exit 0
-    elsif opts[:'broker-url'].nil?
-      puts 'Please provide the broker url.'
       exit 0
     else
       paths = args.map do |folder_path|
         File.expand_path(folder_path.to_s)
       end
-      RabbitMQSpec::Setup.run(files_paths: paths, url: opts)
-      puts 'Setup Finished'
+      RabbitMQSpec::Setup.run(files_paths: paths, url: opts[:'broker-url'])
+      puts "Setup finished on #{opts[:'broker-url']}'"
     end
     exit 0
   end
