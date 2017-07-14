@@ -18,30 +18,50 @@ describe RabbitMQSpec::Setup do
   end
 
   describe '.with_client' do
-    it 'yields a channel' do
-      mock_channel = double('channel', close: true)
-      mock_bunny = double('bunny', start: true, create_channel: mock_channel, close: true)
-      expect(mock_bunny).to receive(:start)
+    context 'Everything works fine' do
+      it 'yields a channel' do
+        mock_channel = double('channel', close: true)
+        mock_bunny = double('bunny', start: true, create_channel: mock_channel, close: true)
+        expect(mock_bunny).to receive(:start)
 
-      expect(Bunny).to receive(:new).with('url', automatically_recover: false).and_return(mock_bunny)
+        expect(Bunny).to receive(:new).with('url', automatically_recover: false).and_return(mock_bunny)
 
-      subject.with_client('url') do |channel|
-        expect(channel).to be(mock_channel)
+        subject.with_client('url') do |channel|
+          expect(channel).to be(mock_channel)
+        end
+      end
+
+      it 'ensures the channel and client closing' do
+        mock_channel = double('channel', close: true)
+        mock_bunny = double('bunny', start: true, create_channel: mock_channel, close: true)
+        expect(mock_bunny).to receive(:start)
+
+        expect(Bunny).to receive(:new).with('url', automatically_recover: false).and_return(mock_bunny)
+
+        expect(mock_bunny).to receive(:close)
+        expect(mock_channel).to receive(:close)
+
+        subject.with_client('url') do |channel|
+        end
       end
     end
 
-    it 'ensures the channel and client closing' do
-      mock_channel = double('channel', close: true)
-      mock_bunny = double('bunny', start: true, create_channel: mock_channel, close: true)
-      expect(mock_bunny).to receive(:start)
+    context 'something fails' do
+      it 'ensures the channel and client closing raising the error' do
+        mock_channel = double('channel', close: true)
+        mock_bunny = double('bunny', start: true, create_channel: mock_channel, close: true)
+        expect(mock_bunny).to receive(:start)
 
-      expect(Bunny).to receive(:new).with('url', automatically_recover: false).and_return(mock_bunny)
+        expect(Bunny).to receive(:new).with('url', automatically_recover: false).and_return(mock_bunny)
 
-      expect(mock_bunny).to receive(:close)
-      expect(mock_channel).to receive(:close)
+        expect(mock_bunny).to receive(:close)
+        expect(mock_channel).to receive(:close)
 
-      subject.with_client('url') do |channel|
-        raise 'Error'
+        expect {
+          subject.with_client('url') do |channel|
+            raise Exception, 'My Error'
+          end
+        }.to raise_error('My Error')
       end
     end
   end

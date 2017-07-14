@@ -17,7 +17,8 @@ class RabbitMQSpec::Setup
         client.start
         channel = client.create_channel
         yield(channel)
-      rescue
+      rescue Exception => ex
+        raise ex
       ensure
         channel&.close
         client&.close

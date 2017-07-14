@@ -6,34 +6,33 @@ root_cmd = Cri::Command.define do
   name        'rabbitmq-spec'
   usage       'rabbitmq-spec command [options]'
 
-  flag   :h,  :help,  'show help for rabbitmq-spec' do |value, cmd|
+  flag   :h,  :help, 'show help for rabbitmq-spec' do |_value, cmd|
     puts cmd.help
     exit 0
   end
 
-  run do |opts, args, cmd|
+  run do |_opts, _args, cmd|
     puts cmd.help
     exit 0
   end
 end
-
 
 cmd_setup = Cri::Command.define do
   name        'setup'
   usage       'rabbitmq-spec setup [options]'
   summary     'Configure RabbitMQ usging the passed specifications files'
 
-  required :u,  :"broker-url", 'AMPQ Broker Url', argument: :required
+  required :u, :"broker-url", 'AMPQ Broker Url', argument: :required
 
-  run do |opts, args, cmd|
+  run do |_opts, args, _cmd|
     if args.count.zero?
-      puts "Please pass a folder or a file name."
+      puts 'Please pass a folder or a file name.'
       exit 0
     else
       args.each do |folder_path|
-        puts File.expand_path("#{folder_path}")
+        puts File.expand_path(folder_path.to_s)
       end
-      puts "OK"
+      puts 'OK'
     end
     exit 0
   end
