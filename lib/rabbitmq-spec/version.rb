@@ -1,3 +1,3 @@
 module RabbitMQSpec
-  VERSION = '0.1.0'.freeze
+  VERSION = '1.0.0beta1'.freeze
 end

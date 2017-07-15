@@ -10,8 +10,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Vinicius Oyama']
   spec.email         = ['vinicius.oyama@codus.com.br']
 
-  spec.summary       = 'Gem for documenting and configuring RabbitMQ brokers'
-  spec.description   = 'Gem for documenting and configuring RabbitMQ brokers'
+  spec.summary       = 'Gem for documenting and configuring RabbitMQ brokers.'
+  spec.description   = "Use this gem DSL to create RabbitMQ architecture specification and evaluate it in order to configure RabbitMQ in one shot."
   spec.homepage      = 'https://github.com/viniciusoyama/rabbitmq-spec'
   spec.license       = 'MIT'
 
