@@ -1,3 +1,4 @@
+# Behavior inside the "queue" DSL keyword
 class RabbitMQSpec::DSL::Builder::Queue < RabbitMQSpec::DSL::Builder::Base
   define_entity_class RabbitMQSpec::Entity::Queue
 

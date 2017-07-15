@@ -19,7 +19,7 @@ class RabbitMQSpec::Setup::Runner
     end
   end
 
-  # private methods 
+  # private methods
   private def worlds
     @paths_to_read.map { |path| RabbitMQSpec::Setup::WorldFetcher.call(path) }
   end

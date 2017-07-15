@@ -1,3 +1,4 @@
+# Behavior inside the "exchange" DSL keyword
 class RabbitMQSpec::DSL::Builder::Exchange < RabbitMQSpec::DSL::Builder::Base
   define_entity_class RabbitMQSpec::Entity::Exchange
 
