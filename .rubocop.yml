@@ -9,6 +9,10 @@ Style/ClassAndModuleChildren:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
+Metrics/LineLength:
+  Max: 100
+  IgnoredPatterns: ['\A#']
+
 AllCops:
   Exclude:
     - rabbitmq-spec.gemspec
