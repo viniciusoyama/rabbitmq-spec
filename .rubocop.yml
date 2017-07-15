@@ -11,6 +11,7 @@ Style/FrozenStringLiteralComment:
 
 AllCops:
   Exclude:
+    - rabbitmq-spec.gemspec
     - 'exe/**/*'
     - 'bin/**/*'
     - 'spec/**/*'
