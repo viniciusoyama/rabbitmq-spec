@@ -76,7 +76,7 @@ On each mqspec file. You can use the following syntax:
 
 ## RabbitMQ Setup
 
-To understant how to use rabbitmq-spec just type the following on your shell after installing the gem:
+To understand how to use rabbitmq-spec just type the following on your shell after installing the gem:
 
 ```shell
 
@@ -115,7 +115,7 @@ Here we're using Rspec with simplecov and rubocop.
 
 ## Contributing
 
-If you have any idea for a feature or have found any bugs feel free to open a new issue at.
+If you have any idea for a feature or have found any bugs feel free to open a new issue at:
 
 https://github.com/viniciusoyama/rabbitmq-spec.
 
