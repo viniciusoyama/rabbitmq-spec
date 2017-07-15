@@ -21,7 +21,12 @@ end
 cmd_setup = Cri::Command.define do
   name        'setup'
   usage       'rabbitmq-spec setup [options]'
-  summary     'Configure RabbitMQ usging the passed specifications files'
+  summary     %{
+    Usage: rabbitmq-spec setup ./mqspec [-u 'amqp://guest:guest@localhost:5672']
+    Configure RabbitMQ using the mqspecs files.
+    If you pass a ruby file it will evaluate it.
+    If you pass a folder it will look for all the files finishing with "_mqspec.rb" and evaluate them.
+  }
 
   required :u, :"broker-url", 'AMPQ Broker Url - Defaults to localhost:5672', argument: :required
 
