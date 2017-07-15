@@ -61,6 +61,8 @@ On each mqspec file. You can use the following syntax:
       durable true
     end
 
+    # this queue will be binded to the parent exchange
+    # it will be created if it not exists yet.
     queue 'queue-name' do
       description 'queue1 description' # optional
       routing_key 'my-custom-routing-key' # optional
