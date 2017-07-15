@@ -1,5 +1,10 @@
 require 'bunny'
 
+# Does the AMPQ Broker setup by reading all mqspecs files,
+# evaluating them and connecting to the broker using the provided url
+# in order to create all exchanges, queues and bindings
+# @example
+#   RabbitMQSpec::Setup.run(['/my/path/folde1', 'my/direct_mqspec/file.rb'], 'amqp://guest:guest@localhost:5672')
 class RabbitMQSpec::Setup
   autoload :Runner, 'rabbitmq-spec/setup/runner'
   autoload :WorldSetupper, 'rabbitmq-spec/setup/world_setupper'
@@ -12,6 +17,7 @@ class RabbitMQSpec::Setup
       end
     end
 
+    # @private
     def with_client(ampq_broker_url)
       client = Bunny.new(ampq_broker_url, automatically_recover: false)
       channel = nil
