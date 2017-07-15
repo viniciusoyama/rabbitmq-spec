@@ -1,6 +1,6 @@
 require 'bunny'
 
-# Deals with the AMPQ Broker setup by reading all mqspecs files
+# Does the AMPQ Broker setup by reading all mqspecs files
 # evaluating them and connecting to the borker using the provided url
 # in order to create all exchanges, queues and bindings
 # @example
@@ -11,7 +11,6 @@ class RabbitMQSpec::Setup
   autoload :WorldFetcher, 'rabbitmq-spec/setup/world_fetcher'
 
   class << self
-    # @public
     def run(files_paths:, url:)
       with_client(url) do |client|
         RabbitMQSpec::Setup::Runner.new(files_paths, client).run
