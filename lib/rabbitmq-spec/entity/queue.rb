@@ -1,3 +1,4 @@
+# Represents an queue in the AMPQ broker
 class RabbitMQSpec::Entity::Queue
   attr_accessor :name
   attr_accessor :description

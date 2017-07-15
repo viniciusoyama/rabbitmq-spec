@@ -1,3 +1,4 @@
+# Represents an exchange in the AMPQ broker 
 class RabbitMQSpec::Entity::Exchange
   attr_accessor :name
   attr_accessor :description
