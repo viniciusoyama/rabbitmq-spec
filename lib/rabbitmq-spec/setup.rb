@@ -22,8 +22,8 @@ class RabbitMQSpec::Setup
       rescue Exception => ex
         raise ex
       ensure
-        channel and channel.close
-        client and client.close
+        channel && channel.close
+        client && client.close
       end
     end
   end
