@@ -39,7 +39,7 @@ describe RabbitMQSpec::Setup::Runner do
 
       expect(RabbitMQSpec::Setup::WorldSetupper).to receive(:call).with(world, client)
 
-      runner.setup_world(world)
+      runner.send(:setup_world, world)
     end
   end
 
@@ -52,7 +52,7 @@ describe RabbitMQSpec::Setup::Runner do
       expect(RabbitMQSpec::Setup::WorldFetcher).to receive(:call).with('path2').ordered.and_return('w2')
       expect(RabbitMQSpec::Setup::WorldFetcher).to receive(:call).with('path3').ordered.and_return('w3')
 
-      expect(runner.worlds).to eq(['w1', 'w2', 'w3'])
+      expect(runner.send(:worlds)).to eq(['w1', 'w2', 'w3'])
     end
   end
 end

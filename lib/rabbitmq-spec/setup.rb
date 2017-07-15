@@ -1,7 +1,7 @@
 require 'bunny'
 
-# Does the AMPQ Broker setup by reading all mqspecs files
-# evaluating them and connecting to the borker using the provided url
+# Does the AMPQ Broker setup by reading all mqspecs files,
+# evaluating them and connecting to the broker using the provided url
 # in order to create all exchanges, queues and bindings
 # @example
 #   RabbitMQSpec::Setup.run(['/my/path/folde1', 'my/direct_mqspec/file.rb'], 'amqp://guest:guest@localhost:5672')

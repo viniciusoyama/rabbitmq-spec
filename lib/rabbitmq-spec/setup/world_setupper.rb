@@ -1,3 +1,8 @@
+# @api private
+# It uses the client to configure the RabbitMQ
+# according with the world object
+# @example
+#   RabbitMQSpec::Setup::WorldSetupper.(world, client)
 module RabbitMQSpec::Setup::WorldSetupper
   class << self
     def call(world, client)
