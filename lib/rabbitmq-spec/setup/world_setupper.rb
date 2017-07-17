@@ -26,7 +26,6 @@ module RabbitMQSpec::Setup::WorldSetupper
       end
     end
 
-
     def setup_queue(queue, client)
       client.queue(queue.name, queue.options)
     end

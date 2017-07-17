@@ -74,6 +74,15 @@ On each mqspec file. You can use the following syntax:
       end
     end
   end
+
+  # you can declare queues outside exchanges.
+  # The setup process will not bind them to anything
+  queue 'queue-name' do
+    description 'queue1 description'
+    options do
+      durable true
+    end
+  end
 `````
 
 ## RabbitMQ Setup
