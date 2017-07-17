@@ -43,6 +43,13 @@ describe 'DSL Parsing should store all configurations' do
           end
         end
       end
+
+      queue 'my-single-queue' do
+        description "queue with no exchange"
+        options do
+          durable true
+        end
+      end
     )
 
     expect(world.exchanges.count).to be(2)
@@ -59,5 +66,9 @@ describe 'DSL Parsing should store all configurations' do
 
     # exchange 2
     expect(world.exchanges[1].queues.count).to be(2)
+
+    # single queue
+    expect(world.single_queues[0].name).to eq('my-single-queue')
+    expect(world.single_queues[0].description).to eq("queue with no exchange")
   end
 end
