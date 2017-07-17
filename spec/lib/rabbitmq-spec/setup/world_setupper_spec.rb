@@ -16,6 +16,19 @@ describe RabbitMQSpec::Setup::WorldSetupper do
 
       subject.(world, client)
     end
+
+    it "calls setup_queue for each single_queue" do
+      world = RabbitMQSpec::DSL::World.new
+      client = double('client')
+      queue1 = double('queue1')
+      queue2 = double('queue2')
+      world.instance_variable_set('@single_queues', [queue1, queue2])
+
+      expect(subject).to receive(:setup_queue).with(queue1, client).ordered
+      expect(subject).to receive(:setup_queue).with(queue2, client).ordered
+
+      subject.(world, client)
+    end
   end
 
   describe '.setup_exchange' do
@@ -50,6 +63,25 @@ describe RabbitMQSpec::Setup::WorldSetupper do
       expect(created_queue).to receive(:bind).with('exc1').ordered
 
       subject.setup_exchange(@exchange, client)
+    end
+  end
+
+
+  describe '.setup_queue' do
+    before(:each) do
+      @queue1 = RabbitMQSpec::Entity::Queue.new
+      @queue1.name = "q1name"
+      @queue1.options = { queue1_options: 'q1opt' }
+    end
+
+    it "creates the queue and returns it" do
+      client = double('client')
+      mock_queue = double('queue1')
+
+      expect(client).to receive(:queue).with('q1name', { queue1_options: 'q1opt' }).and_return(mock_queue).ordered
+
+      queue = subject.setup_queue(@queue1, client)
+      expect(queue).to be(mock_queue)
     end
   end
 end

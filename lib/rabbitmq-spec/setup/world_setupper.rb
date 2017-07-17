@@ -9,6 +9,9 @@ module RabbitMQSpec::Setup::WorldSetupper
       world.exchanges.each do |exchange|
         setup_exchange(exchange, client)
       end
+      world.single_queues.each do |queue|
+        setup_queue(queue, client)
+      end
     end
 
     def setup_exchange(exchange, client)
@@ -21,6 +24,10 @@ module RabbitMQSpec::Setup::WorldSetupper
           client_queue.bind(exchange.name, routing_key: queue.routing_key)
         end
       end
+    end
+
+    def setup_queue(queue, client)
+      client.queue(queue.name, queue.options)
     end
   end
 end
